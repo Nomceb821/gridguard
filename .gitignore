@@ -1,0 +1,6 @@
+venv
+__pycache__/
+*.pyc
+*.db
+backend/ml_training/*.csv
+backend/ml_training/*.pkl
