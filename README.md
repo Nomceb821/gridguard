@@ -44,3 +44,86 @@ This is a demonstrated proof-of-concept of the detection *system*, not a product
 - Purchase-vs-consumption chart per household
 
 ## Project structure
+gridguard/
+├── backend/
+│ ├── app/
+│ │ ├── main.py # FastAPI app entrypoint
+│ │ ├── config.py # Settings loaded from .env
+│ │ ├── database.py # SQLAlchemy engine/session
+│ │ ├── models.py # User, Household, ConsumptionRecord, Alert
+│ │ ├── schemas.py # Pydantic request/response models
+│ │ ├── auth.py # JWT auth, password hashing
+│ │ ├── ml_model.py # Loads trained model, scores risk
+│ │ ├── alerts_service.py # Email/SMS dispatch
+│ │ ├── sensor_simulator.py # Simulated sensor feed + WebSocket manager
+│ │ └── routers/
+│ │ ├── auth.py
+│ │ ├── households.py
+│ │ ├── alerts.py
+│ │ └── sensors.py
+│ ├── ml_training/
+│ │ ├── generate_synthetic_data.py
+│ │ └── train_model.py
+│ ├── requirements.txt
+│ └── .env.example
+└── frontend/
+├── index.html # Login / register
+├── dashboard.html # Overview: households + chart
+├── alerts.html # Alerts, with filtering
+├── sensors.html # Live sensor feed
+├── style.css
+├── script.js
+└── config.js # Points frontend at the backend URL
+
+## Running it locally
+
+### Backend
+
+```bash
+cd backend
+python -m venv venv
+source venv/Scripts/activate   # Windows Git Bash; use venv/bin/activate on Mac/Linux
+pip install -r requirements.txt
+```
+
+Copy `.env.example` to `.env` and set a real `SECRET_KEY`:
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+Generate the synthetic data and train the model:
+```bash
+cd ml_training
+python generate_synthetic_data.py
+python train_model.py
+cd ..
+```
+
+Run the API:
+```bash
+uvicorn app.main:app --reload
+```
+The API is now live at `http://localhost:8000` (interactive docs at `/docs`).
+
+### Frontend
+
+Serve the `frontend/` folder with a local server (e.g. VS Code's Live Server extension) rather than opening the HTML files directly — the backend's CORS settings and the browser's handling of `file://` origins don't play well together otherwise.
+
+Update `frontend/config.js` if your backend isn't running on `localhost:8000`.
+
+## Model performance
+
+The trained model reports perfect precision/recall on the synthetic test set. This is expected, not a sign of a magic model — the synthetic data has a clean, deterministic rule for what "tampering" looks like. With real municipal data, performance would be meaningfully noisier, and the model would need retraining against confirmed real-world inspection outcomes.
+
+## Limitations & future work
+
+- Replace synthetic data with real (anonymised) prepaid electricity purchase data, if/when access is available
+- Replace the simulated sensor feed with real IoT hardware readings
+- Move from a supervised model (which relies on clean synthetic labels) to an unsupervised anomaly detection approach (e.g. Isolation Forest) as a starting point on real, unlabeled data, retraining supervised once enough confirmed cases exist
+- Move from SQLite to Postgres for production use
+- Deploy the backend (Render/Railway) and frontend (GitHub Pages) for a live public demo
+
+## Author
+
+Nomcebo Nkomo — Software Developer & Data Scientist
+[GitHub](https://github.com/Nomceb821) · [LinkedIn](https://www.linkedin.com/in/nomcebonkomo3/)
