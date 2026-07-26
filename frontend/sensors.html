@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GridGuard — Sensor Feed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="sensors-page" data-page="sensors">
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Grid<span>Guard</span></div>
+    <nav class="main-nav">
+      <a href="dashboard.html" class="nav-link" data-page="dashboard">Overview</a>
+      <a href="alerts.html" class="nav-link" data-page="alerts">Alerts <span class="nav-badge" id="nav-alert-badge"></span></a>
+      <a href="sensors.html" class="nav-link" data-page="sensors">Sensors</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="connection-status" id="connection-status"><span class="dot"></span> —</div>
+      <button id="logout-btn" class="btn-secondary btn-small">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="page-header">
+    <h1>Sensor feed</h1>
+    <p>Live motion-sensor readings from infrastructure along the grid. Simulated feed — see README for why.</p>
+  </div>
+
+  <section class="panel">
+    <div class="panel-header">
+      <h2>Live feed</h2>
+    </div>
+    <ul class="sensor-feed" id="sensor-feed">
+      <li class="empty-state">Waiting for sensor data…</li>
+    </ul>
+  </section>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

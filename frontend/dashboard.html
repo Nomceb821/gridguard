@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GridGuard — Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body class="dashboard-page" data-page="dashboard">
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Grid<span>Guard</span></div>
+    <nav class="main-nav">
+      <a href="dashboard.html" class="nav-link" data-page="dashboard">Overview</a>
+      <a href="alerts.html" class="nav-link" data-page="alerts">Alerts <span class="nav-badge" id="nav-alert-badge"></span></a>
+      <a href="sensors.html" class="nav-link" data-page="sensors">Sensors</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="connection-status" id="connection-status"><span class="dot"></span> —</div>
+      <button id="logout-btn" class="btn-secondary btn-small">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="page-header">
+    <h1>Overview</h1>
+    <p>Households under monitoring and their current risk status.</p>
+  </div>
+
+  <main class="dashboard-grid">
+
+    <section class="panel households-panel">
+      <div class="panel-header">
+        <h2>Households</h2>
+        <div class="households-actions">
+          <input type="text" id="household-search" class="search-input" placeholder="Search by address or meter…">
+          <button id="add-household-btn" class="btn-primary btn-small">+ Add household</button>
+        </div>
+      </div>
+      <table class="households-table">
+        <thead>
+          <tr>
+            <th>Meter</th>
+            <th>Address</th>
+            <th>Ward</th>
+            <th>Risk</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="households-body">
+          <tr><td colspan="5">Loading households…</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel chart-panel">
+      <div class="panel-header">
+        <h2>Purchase vs consumption</h2>
+        <select id="household-select"><option value="">Select a household</option></select>
+      </div>
+      <canvas id="consumption-chart" height="200"></canvas>
+
+      <form id="record-form" class="record-form">
+        <input type="text" id="record-month" placeholder="YYYY-MM" required>
+        <input type="number" id="record-purchase" placeholder="Purchase (R)" step="0.01" required>
+        <input type="number" id="record-consumption" placeholder="Consumption (kWh)" step="0.01" required>
+        <button type="submit" class="btn-secondary btn-small">Log month</button>
+      </form>
+    </section>
+
+  </main>
+</div>
+
+<div class="modal-overlay" id="household-modal">
+  <form class="modal" id="household-form">
+    <h2>Add household</h2>
+    <label class="field"><span>Meter number</span><input type="text" id="hh-meter" required></label>
+    <label class="field"><span>Address</span><input type="text" id="hh-address" required></label>
+    <label class="field"><span>Ward</span><input type="text" id="hh-ward"></label>
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" id="cancel-household">Cancel</button>
+      <button type="submit" class="btn-primary">Save</button>
+    </div>
+  </form>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

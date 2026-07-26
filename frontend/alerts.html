@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GridGuard — Alerts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="alerts-page" data-page="alerts">
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Grid<span>Guard</span></div>
+    <nav class="main-nav">
+      <a href="dashboard.html" class="nav-link" data-page="dashboard">Overview</a>
+      <a href="alerts.html" class="nav-link" data-page="alerts">Alerts <span class="nav-badge" id="nav-alert-badge"></span></a>
+      <a href="sensors.html" class="nav-link" data-page="sensors">Sensors</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="connection-status" id="connection-status"><span class="dot"></span> —</div>
+      <button id="logout-btn" class="btn-secondary btn-small">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="page-header">
+    <h1>Alerts</h1>
+    <p>Usage-risk flags and infrastructure tamper alerts, newest first.</p>
+  </div>
+
+  <section class="panel">
+    <div class="panel-header">
+      <div class="filter-group">
+        <button class="filter-btn active" id="filter-open" data-filter="false">Open</button>
+        <button class="filter-btn" id="filter-resolved" data-filter="true">Resolved</button>
+        <button class="filter-btn" id="filter-all" data-filter="">All</button>
+      </div>
+      <span class="alert-count" id="alert-count">0</span>
+    </div>
+    <ul class="alerts-list" id="alerts-list">
+      <li class="empty-state">Loading alerts…</li>
+    </ul>
+  </section>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GridGuard — Staff Login</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="auth-page">
+        <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+            <defs>
+                <symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></symbol>
+                <symbol id="ic-house" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/></symbol>
+                <symbol id="ic-signal" viewBox="0 0 24 24"><path d="M5 13a11 11 0 0 1 14 0M8.5 16.5a6 6 0 0 1 7 0M12 20h.01"/></symbol>
+                <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></symbol>
+                <symbol id="ic-meter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12l5-3M12 12l-3-4"/></symbol>
+            </defs>
+        </svg>
+
+    <div class="floating-icons" aria-hidden="true">
+        <svg class="float-icon icon-1"><use href="#ic-bolt"/></svg>
+        <svg class="float-icon icon-2"><use href="#ic-house"/></svg>
+        <svg class="float-icon icon-3"><use href="#ic-signal"/></svg>
+        <svg class="float-icon icon-4"><use href="#ic-shield"/></svg>
+        <svg class="float-icon icon-5"><use href="#ic-meter"/></svg>
+        <svg class="float-icon icon-6"><use href="#ic-bolt"/></svg>
+        <svg class="float-icon icon-7"><use href="#ic-house"/></svg>
+        <svg class="float-icon icon-8"><use href="#ic-signal"/></svg>
+        <svg class="float-icon icon-9"><use href="#ic-shield"/></svg>
+        <svg class="float-icon icon-10"><use href="#ic-meter"/></svg>
+        <svg class="float-icon icon-11"><use href="#ic-bolt"/></svg>
+        <svg class="float-icon icon-12"><use href="#ic-house"/></svg>
+        <svg class="float-icon icon-13"><use href="#ic-signal"/></svg>
+        <svg class="float-icon icon-14"><use href="#ic-shield"/></svg>
+        <svg class="float-icon icon-15"><use href="#ic-meter"/></svg>
+        <svg class="float-icon icon-16"><use href="#ic-bolt"/></svg>
+        <svg class="float-icon icon-17"><use href="#ic-house"/></svg>
+        <svg class="float-icon icon-18"><use href="#ic-signal"/></svg>
+        <svg class="float-icon icon-19"><use href="#ic-shield"/></svg>
+        <svg class="float-icon icon-20"><use href="#ic-meter"/></svg>
+    </div>
+        <div class="auth-card">
+            <p class="eyebrow">GridGuard</p>
+            <h1>Municipal staff login</h1>
+            <p class="subtitle">Monitor electricity usage anomalies and infrastructure tamper alerts.</p>
+
+            <form id="login-form">
+                <label class="field">
+                    <span>Email</span>
+                    <input type="email" id="email" required autocomplete="username">
+                </label>
+                <label class="field">
+                    <span>Password</span>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </label>
+                <button type="submit" class="btn-primary">Log in</button>
+            </form>
+
+            <p class="error-msg" id="login-error"></p>
+
+            <details class="register-toggle">
+                <summary>Need an account? Register</summary>
+                <form id="register-form">
+                    <label class="field">
+                        <span>Full name</span>
+                        <input type="text" id="reg-name" required>
+                    </label>
+                    <label class="field">
+                        <span>Email</span>
+                        <input type="email" id="reg-email" required>
+                    </label>
+                    <label class="field">
+                        <span>Password</span>
+                        <input type="password" id="reg-password" required minlength="6">
+                    </label>
+                    <button type="submit" class="btn-secondary">Create account</button>
+                </form>
+                <p class="error-msg" id="register-error"></p>
+            </details>
+        </div>
+
+        <script src="config.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
