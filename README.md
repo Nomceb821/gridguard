@@ -51,67 +51,68 @@ This is a demonstrated proof-of-concept of the detection *system*, not a product
 - Purchase-vs-consumption chart per household
 
 **Project Structure**
+
 gridguard/
-├── backend/
-│ ├── app/
-│ │ ├── main.py # FastAPI app entrypoint
-│ │ ├── config.py # Settings loaded from .env
-│ │ ├── database.py # SQLAlchemy engine/session
-│ │ ├── models.py # User, Household, ConsumptionRecord, Alert
-│ │ ├── schemas.py # Pydantic request/response models
-│ │ ├── auth.py # JWT auth, password hashing
-│ │ ├── ml_model.py # Loads trained model, scores risk
-│ │ ├── alerts_service.py # Email/SMS dispatch
-│ │ ├── sensor_simulator.py # Simulated sensor feed + WebSocket manager
-│ │ └── routers/
-│ │ ├── auth.py
-│ │ ├── households.py
-│ │ ├── alerts.py
-│ │ └── sensors.py
-│ ├── ml_training/
-│ │ ├── generate_synthetic_data.py
-│ │ └── train_model.py
-│ ├── requirements.txt
-│ └── .env.example
-└── docs/ # frontend — named "docs" so GitHub Pages can serve it
-├── index.html # Login / register
-├── dashboard.html # Overview: households + chart
-├── alerts.html # Alerts, with filtering
-├── sensors.html # Live sensor feed
-├── style.css
-├── script.js
-└── config.js # Points frontend at the backend URL
+|-----backend/
+ | ----app/
+    |--- main.py # FastAPI app entrypoint
+    |---config.py # Settings loaded from .env
+    |---database.py # SQLAlchemy engine/session
+    |---models.py # User, Household, ConsumptionRecord, Alert
+    |---schemas.py # Pydantic request/response models
+    |---auth.py # JWT auth, password hashing
+    |---ml_model.py # Loads trained model, scores risk
+    |---alerts_service.py # Email/SMS dispatch
+    |---sensor_simulator.py # Simulated sensor feed + WebSocket manager
+    |---routers/
+    |---auth.py
+    |---households.py
+    |---alerts.py
+    |---sensors.py
+  |----ml_training/
+    |---generate_synthetic_data.py
+    |---train_model.py
+  |----requirements.txt
+  |----env.example
+|-----docs/ # frontend — named "docs" so GitHub Pages can serve it
+  |----index.html # Login / register
+  |----dashboard.html # Overview: households + chart
+  |----alerts.html # Alerts, with filtering
+  |----sensors.html # Live sensor feed
+  |----style.css
+  |----script.js
+  |----config.js # Points frontend at the backend URL
 
 
 ## Running it locally
 
 ### Backend
 
-```bash
+bash
 cd backend
 python -m venv venv
 source venv/Scripts/activate   # Windows Git Bash; use venv/bin/activate on Mac/Linux
 pip install -r requirements.txt
-```
 
 Copy `.env.example` to `.env` and set a real `SECRET_KEY`:
-```bash
+
+bash
 python -c "import secrets; print(secrets.token_hex(32))"
-```
+
 Locally, `DATABASE_URL` defaults to SQLite (`sqlite:///./gridguard.db`) — no separate database setup needed for local development.
 
 Generate the synthetic data and train the model:
-```bash
+bash
 cd ml_training
 python generate_synthetic_data.py
 python train_model.py
 cd ..
-```
+
 
 Run the API:
-```bash
+bash
 uvicorn app.main:app --reload
-```
+
 The API is now live at `http://localhost:8000` (interactive docs at `/docs`).
 
 ### Frontend
