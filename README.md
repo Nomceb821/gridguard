@@ -51,8 +51,8 @@ This is a demonstrated proof-of-concept of the detection *system*, not a product
 - Purchase-vs-consumption chart per household
 
 **Project Structure**
+<img width="653" height="505" alt="image" src="https://github.com/user-attachments/assets/0b49dfc3-647d-4fd6-837e-054f822902a3" />
 
-<img width="653" height="505" alt="image" src="https://github.com/user-attachments/assets/6605e420-d5b1-467f-a4b1-700bfdb15165" />
 
 
 
