@@ -52,36 +52,8 @@ This is a demonstrated proof-of-concept of the detection *system*, not a product
 
 **Project Structure**
 
-gridguard/
-|-----backend/
- | ----app/
-    |--- main.py # FastAPI app entrypoint
-    |---config.py # Settings loaded from .env
-    |---database.py # SQLAlchemy engine/session
-    |---models.py # User, Household, ConsumptionRecord, Alert
-    |---schemas.py # Pydantic request/response models
-    |---auth.py # JWT auth, password hashing
-    |---ml_model.py # Loads trained model, scores risk
-    |---alerts_service.py # Email/SMS dispatch
-    |---sensor_simulator.py # Simulated sensor feed + WebSocket manager
-    |---routers/
-    |---auth.py
-    |---households.py
-    |---alerts.py
-    |---sensors.py
-  |----ml_training/
-    |---generate_synthetic_data.py
-    |---train_model.py
-  |----requirements.txt
-  |----env.example
-|-----docs/ # frontend — named "docs" so GitHub Pages can serve it
-  |----index.html # Login / register
-  |----dashboard.html # Overview: households + chart
-  |----alerts.html # Alerts, with filtering
-  |----sensors.html # Live sensor feed
-  |----style.css
-  |----script.js
-  |----config.js # Points frontend at the backend URL
+<img width="552" height="607" alt="image" src="https://github.com/user-attachments/assets/3c7fcd5b-fe02-4361-92e2-35a6e02a1e0c" />
+
 
 
 ## Running it locally
