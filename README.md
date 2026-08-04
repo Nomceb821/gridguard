@@ -52,7 +52,8 @@ This is a demonstrated proof-of-concept of the detection *system*, not a product
 
 **Project Structure**
 
-<img width="552" height="607" alt="image" src="https://github.com/user-attachments/assets/3c7fcd5b-fe02-4361-92e2-35a6e02a1e0c" />
+<img width="653" height="505" alt="image" src="https://github.com/user-attachments/assets/6605e420-d5b1-467f-a4b1-700bfdb15165" />
+
 
 
 
@@ -117,4 +118,3 @@ Nomcebo Nkomo — Software Developer & Data Scientist
 [GitHub](https://github.com/Nomceb821) · [LinkedIn](https://www.linkedin.com/in/nomcebonkomo3/)
 - Top-nav multi-page layout (Overview / Alerts / Sensors) with a live connection indicator
 
-## Project structure
