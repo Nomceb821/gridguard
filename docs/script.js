@@ -40,10 +40,11 @@ const loginForm = document.getElementById('login-form');
 if (loginForm) {
   if (getToken()) window.location.href = 'dashboard.html';
 
+  const loginBtn = document.getElementById('login-submit-btn');
+
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const errorEl = document.getElementById('login-error');
-    errorEl.textContent = '';
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -51,6 +52,11 @@ if (loginForm) {
     const body = new URLSearchParams();
     body.append('username', email);
     body.append('password', password);
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Logging in…';
+    errorEl.style.color = 'var(--text-dim)';
+    errorEl.textContent = 'Connecting — this can take up to a minute if the server has been idle.';
 
     try {
       const res = await fetch(`${API_BASE_URL}/auth/login`, {
@@ -63,26 +69,36 @@ if (loginForm) {
         throw new Error(data.detail || 'Login failed');
       }
       const data = await res.json();
+      errorEl.textContent = '';
       setToken(data.access_token);
       window.location.href = 'dashboard.html';
     } catch (err) {
+      errorEl.style.color = 'var(--red)';
       errorEl.textContent = err.message;
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Log in';
     }
   });
 }
 
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
+  const registerBtn = document.getElementById('register-submit-btn');
+
   registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const errorEl = document.getElementById('register-error');
-    errorEl.textContent = '';
 
     const payload = {
       full_name: document.getElementById('reg-name').value,
       email: document.getElementById('reg-email').value,
       password: document.getElementById('reg-password').value,
     };
+
+    registerBtn.disabled = true;
+    registerBtn.textContent = 'Creating account…';
+    errorEl.style.color = 'var(--text-dim)';
+    errorEl.textContent = 'Connecting — this can take up to a minute if the server has been idle.';
 
     try {
       const res = await fetch(`${API_BASE_URL}/auth/register`, {
@@ -100,6 +116,9 @@ if (registerForm) {
     } catch (err) {
       errorEl.style.color = 'var(--red)';
       errorEl.textContent = err.message;
+    } finally {
+      registerBtn.disabled = false;
+      registerBtn.textContent = 'Create account';
     }
   });
 }
